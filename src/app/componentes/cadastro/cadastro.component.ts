@@ -16,6 +16,7 @@ export class CadastroComponent {
   email: string = '';
   senha: string = '';
   confirmarSenha: string = '';
+  aceitarTermos: boolean = false;
   mensagemErro: string = '';
   mensagemSucesso: string = '';
 
@@ -38,6 +39,11 @@ export class CadastroComponent {
 
     if (this.senha.length < 6) {
       this.mensagemErro = 'A senha deve ter no mínimo 6 caracteres!';
+      return;
+    }
+
+    if (!this.aceitarTermos) {
+      this.mensagemErro = 'Você deve aceitar os Termos e Condições para continuar.';
       return;
     }
 

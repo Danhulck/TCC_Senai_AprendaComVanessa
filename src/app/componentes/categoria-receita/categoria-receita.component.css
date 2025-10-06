@@ -29,8 +29,8 @@
     width: 64px;
     height: 64px;
   }
-  .button.left { left: -24px; }
-  .button.right { right: -24px; }
+  .button.left { left: 16px; }
+  .button.right { right: 16px; }
 }
 
 /* 8K (7680px) */
@@ -47,8 +47,14 @@
     width: 72px;
     height: 72px;
   }
-  .button.left { left: -28px; }
-  .button.right { right: -28px; }
+  .button.left { left: 20px; }
+  .button.right { right: 20px; }
+}
+
+/* Espaçamento extra apenas para o título dos doces, para desgrudar do header */
+.categoria-section.doce .text-wrapper .title {
+  margin-top: 12px;
+  display: block;
 }
 
 .categoria-section.doce {
@@ -210,7 +216,7 @@
   cursor: pointer;
   border: 0;
   border-radius: 50%;
-  z-index: 10;
+  z-index: 1001; /* acima de headers fixos */
   transition: all 0.3s ease;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
@@ -221,11 +227,11 @@
 }
 
 .button.left {
-  left: -20px;
+  left: 8px; /* garante visibilidade em qualquer tela */
 }
 
 .button.right {
-  right: -20px;
+  right: 8px; /* garante visibilidade em qualquer tela */
 }
 
 .button:before,
@@ -325,11 +331,11 @@
   }
 
   .button.left {
-    left: -10px;
+    left: 8px;
   }
 
   .button.right {
-    right: -10px;
+    right: 8px;
   }
 }
 
