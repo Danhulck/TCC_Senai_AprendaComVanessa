@@ -1,0 +1,22 @@
+<a [routerLink]="['/receita', receita.id]" class="card-link">
+  <article class="article-wrapper" [ngClass]="receita.flavor.toLowerCase()">
+    <div class="rounded-lg container-project">
+      <img [src]="receita.image" [alt]="receita.name">
+    </div>
+    <div class="project-info">
+      <div class="flex-pr">
+        <div class="project-title text-nowrap">{{ receita.name }}</div>
+        <div class="project-hover">
+            <button class="favorito-btn" (click)="$event.preventDefault(); $event.stopPropagation(); alternarFavorito($event)" [ngClass]="{'favorito': isFavorito}">
+                <span>{{ isFavorito ? '❤️' : '🤍' }}</span>
+            </button>
+        </div>
+      </div>
+      <div class="types">
+        <span class="project-type" [ngClass]="receita.flavor.toLowerCase()">
+          • {{ receita.flavor }}
+        </span>
+      </div>
+    </div>
+  </article>
+</a>

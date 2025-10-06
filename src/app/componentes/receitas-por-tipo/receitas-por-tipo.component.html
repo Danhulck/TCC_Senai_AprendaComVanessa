@@ -1,0 +1,24 @@
+<div class="receitas-tipo-container" [ngClass]="tipo">
+  <div class="header-section">
+    <h1 class="titulo">{{ titulo }}</h1>
+    <p class="subtitulo">{{ receitasFiltradas.length }} receita(s) encontrada(s)</p>
+  </div>
+
+  <div class="receitas-grid">
+    @for (receita of receitasFiltradas; track receita.id) {
+      <app-receita-card [receita]="receita"></app-receita-card>
+    }
+  </div>
+
+  @if (receitasFiltradas.length === 0) {
+    <div class="empty-state">
+      <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="12" y1="8" x2="12" y2="12"></line>
+        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+      </svg>
+      <h2>Nenhuma receita encontrada</h2>
+      <p>Não há receitas disponíveis nesta categoria no momento.</p>
+    </div>
+  }
+</div>

@@ -1,0 +1,307 @@
+.timer-container {
+  min-height: 100vh;
+  padding: 100px 2rem 3rem;
+  background: linear-gradient(135deg, #ffeee1 0%, #FFE0ED 50%, #ffeee1 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.timer-card {
+  background: white;
+  border-radius: 30px;
+  padding: 3rem;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.timer-titulo {
+  font-size: 2.5rem;
+  font-weight: 800;
+  text-align: center;
+  color: #2d3748;
+  margin-bottom: 0.5rem;
+}
+
+.timer-subtitulo {
+  text-align: center;
+  color: #718096;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+/* Display do Timer com Anel Circular */
+.timer-display {
+  position: relative;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 350px;
+}
+
+/* Anel SVG Container */
+.timer-ring {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  margin: 0 auto;
+}
+
+.timer-ring svg {
+  transform: rotate(-90deg);
+  width: 100%;
+  height: 100%;
+}
+
+.timer-ring-circle-bg {
+  fill: none;
+  stroke: #e2e8f0;
+  stroke-width: 12;
+}
+
+.timer-ring-circle {
+  fill: none;
+  stroke: url(#gradient);
+  stroke-width: 12;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1s linear;
+}
+
+.tempo-grande {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3rem;
+  font-weight: 800;
+  font-family: 'Courier New', monospace;
+  color: #2d3748;
+  letter-spacing: 0.05em;
+}
+
+.timer-display.running .tempo-grande {
+  color: #FF70AA;
+}
+
+/* Removido - usando anel circular agora */
+
+/* Configuração de Tempo */
+.timer-config {
+  margin-bottom: 2rem;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input-wrapper label {
+  font-size: 0.875rem;
+  color: #718096;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.time-input {
+  width: 90px;
+  padding: 0.75rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+  border: 2px solid #e2e8f0;
+  border-radius: 15px;
+  font-family: 'Courier New', monospace;
+  transition: all 0.3s ease;
+}
+
+.time-input:focus {
+  outline: none;
+  border-color: #FF70AA;
+  box-shadow: 0 0 0 3px rgba(255, 112, 170, 0.1);
+}
+
+.separator {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #cbd5e0;
+  margin-top: 1.5rem;
+}
+
+/* Botões de Tempo Rápido */
+.quick-time-buttons {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.quick-btn {
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #FF70AA 0%, #FF8865 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(255, 112, 170, 0.3);
+}
+
+.quick-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 112, 170, 0.4);
+}
+
+.quick-btn:active {
+  transform: translateY(0);
+}
+
+/* Controles do Timer */
+.timer-controls {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.control-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.control-btn svg {
+  width: 24px;
+  height: 24px;
+}
+
+.start-btn {
+  background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+  color: white;
+}
+
+.start-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(72, 187, 120, 0.4);
+}
+
+.pause-btn {
+  background: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%);
+  color: white;
+}
+
+.pause-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(237, 137, 54, 0.4);
+}
+
+.resume-btn {
+  background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+  color: white;
+}
+
+.resume-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(66, 153, 225, 0.4);
+}
+
+.stop-btn {
+  background: linear-gradient(135deg, #f56565 0%, #e53e3e 100%);
+  color: white;
+}
+
+.stop-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(245, 101, 101, 0.4);
+}
+
+/* Dicas */
+.timer-dicas {
+  background: #ffeee1;
+  border-radius: 15px;
+  padding: 1.5rem;
+  border-left: 4px solid #FF70AA;
+}
+
+.timer-dicas h3 {
+  color: #2d3748;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.timer-dicas ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.timer-dicas li {
+  color: #4a5568;
+  padding: 0.5rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.timer-dicas li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #FF70AA;
+  font-weight: bold;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .timer-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .timer-titulo {
+    font-size: 2rem;
+  }
+
+  .tempo-grande {
+    font-size: 3.5rem;
+  }
+
+  .time-input {
+    width: 100px;
+    font-size: 1.5rem;
+  }
+
+  .quick-time-buttons {
+    gap: 0.5rem;
+  }
+
+  .quick-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .control-btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+  }
+}

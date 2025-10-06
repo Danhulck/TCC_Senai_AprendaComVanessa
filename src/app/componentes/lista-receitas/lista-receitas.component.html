@@ -1,0 +1,8 @@
+<section class="lista-receitas">
+    <span class="linha-destaque"></span>
+  
+    @for(categoria of categorias; track categoria.id) {
+      <app-categoria-receita [categoria]="categoria"></app-categoria-receita>
+    }
+  </section>
+  

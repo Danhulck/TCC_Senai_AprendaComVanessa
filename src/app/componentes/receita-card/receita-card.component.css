@@ -1,0 +1,268 @@
+/* Card base */
+.article-wrapper {
+    width: 100%;
+    max-width: 250px;
+    transition: 0.3s all ease-in-out;
+    border-radius: 15px;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+    background-color: white;
+    transform: translate(0, 0);
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .categoria-container {
+    margin-bottom: 40px;
+  }
+  
+  .categoria-titulo {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 16px 0;
+    color: var(--color-primaria);
+    text-align: center;
+  }
+  
+  .receitas-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+    max-width: 1200px; /* limita a largura */
+    margin: 0 auto;    /* centraliza no meio */
+    padding: 10px;
+  }
+  
+  /* Doce - cores com background rosa */
+  .article-wrapper.doce {
+    background: linear-gradient(135deg, #ffeee1 0%, #FFD1E3 100%);
+  }
+  .article-wrapper.doce:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 12px 24px rgba(255, 112, 170, 0.3);
+  }
+  
+  /* Salgado - cores com background laranja */
+  .article-wrapper.salgado {
+    background: linear-gradient(135deg, #ffeee1 0%, #FFD4C0 100%);
+  }
+  .article-wrapper.salgado:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 12px 24px rgba(255, 136, 101, 0.3);
+  }
+  
+  /* Container da imagem */
+  .container-project {
+    width: 100%;
+    height: 200px;
+    background: #f3f3f3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 0;
+  }
+  
+  .container-project img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  .article-wrapper:hover .container-project img {
+    transform: scale(1.1);
+  }
+  
+  .cont.card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    height: 100%;
+  }
+
+  
+  .project-title {
+    font-size: 1.1em;
+    margin: 0;
+    font-weight: 700;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #2d3748;
+  }
+  
+  .types {
+    gap: 10px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  /* Badge base */
+  .project-type {
+    font-weight: bold;
+    padding: 0.3em 0.7em;
+    border-radius: 15px;
+    font-size: 12px;
+    letter-spacing: -0.6px;
+    transition: all 0.3s ease;
+  }
+  
+  /* ❤️ Doce */
+  .project-type.doce {
+    background: #FF70AA;
+    color: white;
+    font-weight: 700;
+  }
+  .article-wrapper:hover .project-type.doce {
+    background: #FF5A9A;
+    transform: scale(1.05);
+  }
+  
+  /* 🍊 Salgado */
+  .project-type.salgado {
+    background: #FF8865;
+    color: white;
+    font-weight: 700;
+  }
+  .article-wrapper:hover .project-type.salgado {
+    background: #FF7050;
+    transform: scale(1.05);
+  }
+  
+  /* Botão coração */
+  .project-hover {
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    font-size: 22px;
+  }
+  
+  .article-wrapper:hover .project-hover {
+    transform: rotate(-15deg) scale(1.15);
+  }
+  
+  .article-wrapper.doce .project-hover:hover {
+    background-color: rgba(255, 112, 170, 0.2);
+  }
+  
+  .article-wrapper.salgado .project-hover:hover {
+    background-color: rgba(255, 136, 101, 0.2);
+  }
+  
+  .favorito-btn {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 22px;
+  }
+  
+  .card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    height: 100%;
+  }
+  
+  
+  .project-info {
+    padding: 1.2rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.9);
+  }
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .article-wrapper {
+    max-width: 100%;
+  }
+
+  .container-project {
+    height: 160px;
+  }
+
+  .project-title {
+    font-size: 1rem;
+  }
+}
+
+/* Tablets */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .article-wrapper {
+    max-width: 260px;
+  }
+  .container-project {
+    height: 180px;
+  }
+}
+
+/* Desktop padrão */
+@media (min-width: 1025px) and (max-width: 1599px) {
+  .article-wrapper {
+    max-width: 280px;
+  }
+  .container-project {
+    height: 200px;
+  }
+}
+
+/* TVs/monitores grandes */
+@media (min-width: 1600px) {
+  .article-wrapper {
+    max-width: 320px;
+  }
+  .container-project {
+    height: 240px;
+  }
+  .project-title {
+    font-size: 1.15em;
+  }
+}
+
+/* 4K (3840px) */
+@media (min-width: 3840px) {
+  .article-wrapper {
+    max-width: 360px;
+  }
+  .container-project {
+    height: 280px;
+  }
+  .project-title {
+    font-size: 1.2em;
+  }
+}
+
+/* 8K (7680px) */
+@media (min-width: 7680px) {
+  .article-wrapper {
+    max-width: 420px;
+  }
+  .container-project {
+    height: 320px;
+  }
+  .project-title {
+    font-size: 1.3em;
+  }
+}
+  
+  .flex-pr {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+  
+  .card-link {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  

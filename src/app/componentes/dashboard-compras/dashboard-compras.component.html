@@ -1,0 +1,242 @@
+<div class="dashboard-container">
+  <!-- Header -->
+  <div class="dashboard-header">
+    <button class="btn-voltar" (click)="voltarParaListas()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+      Voltar
+    </button>
+    <h1 class="dashboard-titulo">📊 Dashboard de Compras</h1>
+    <p class="dashboard-subtitulo">Análise completa dos seus gastos</p>
+  </div>
+
+  <!-- Filtros -->
+  <div class="filtros-section">
+    <h2 class="filtros-titulo">Filtros</h2>
+    
+    <div class="filtros-grid">
+      <!-- Filtros Rápidos -->
+      <div class="filtro-grupo">
+        <label>Período</label>
+        <div class="filtros-rapidos">
+          <button 
+            class="filtro-btn" 
+            [class.active]="tipoFiltro === 'dia'"
+            (click)="tipoFiltro = 'dia'; aplicarFiltro()">
+            Hoje
+          </button>
+          <button 
+            class="filtro-btn" 
+            [class.active]="tipoFiltro === 'semana'"
+            (click)="tipoFiltro = 'semana'; aplicarFiltro()">
+            Semana
+          </button>
+          <button 
+            class="filtro-btn" 
+            [class.active]="tipoFiltro === 'mes'"
+            (click)="tipoFiltro = 'mes'; aplicarFiltro()">
+            Mês
+          </button>
+          <button 
+            class="filtro-btn" 
+            [class.active]="tipoFiltro === 'ano'"
+            (click)="tipoFiltro = 'ano'; aplicarFiltro()">
+            Ano
+          </button>
+        </div>
+      </div>
+
+      <!-- Filtro Personalizado -->
+      <div class="filtro-grupo" *ngIf="tipoFiltro === 'personalizado'">
+        <label>Período Personalizado</label>
+        <div class="filtro-datas">
+          <input 
+            type="date" 
+            [(ngModel)]="dataInicioFormatada"
+            (change)="aplicarFiltro()"
+            class="filtro-input">
+          <span>até</span>
+          <input 
+            type="date" 
+            [(ngModel)]="dataFimFormatada"
+            (change)="aplicarFiltro()"
+            class="filtro-input">
+        </div>
+      </div>
+
+      <!-- Filtro por Loja -->
+      <div class="filtro-grupo">
+        <label>Filtrar por Loja</label>
+        <select 
+          [(ngModel)]="lojaSelecionada"
+          (change)="tipoFiltro = 'loja'; aplicarFiltro()"
+          class="filtro-select">
+          <option value="">Todas as lojas</option>
+          @for (loja of todasLojas; track loja) {
+            <option [value]="loja">{{ loja }}</option>
+          }
+        </select>
+      </div>
+
+      <!-- Filtro por Item -->
+      <div class="filtro-grupo">
+        <label>Filtrar por Item</label>
+        <select 
+          [(ngModel)]="itemSelecionado"
+          (change)="tipoFiltro = 'item'; aplicarFiltro()"
+          class="filtro-select">
+          <option value="">Todos os itens</option>
+          @for (item of todosItens; track item) {
+            <option [value]="item">{{ item }}</option>
+          }
+        </select>
+      </div>
+
+      <!-- Botão Personalizado -->
+      <div class="filtro-grupo">
+        <label>&nbsp;</label>
+        <button 
+          class="filtro-btn-personalizado"
+          (click)="tipoFiltro = 'personalizado'">
+          📅 Período Personalizado
+        </button>
+      </div>
+    </div>
+
+    <div class="filtro-ativo">
+      <strong>Filtro ativo:</strong> {{ tituloFiltro }}
+    </div>
+  </div>
+
+  <!-- Cards de Estatísticas -->
+  <div class="stats-grid">
+    <div class="stat-card total">
+      <div class="stat-icon">💰</div>
+      <div class="stat-info">
+        <h3>Total Gasto</h3>
+        <p class="stat-value">{{ formatarValor(totalGasto) }}</p>
+      </div>
+    </div>
+
+    <div class="stat-card compras">
+      <div class="stat-icon">🛒</div>
+      <div class="stat-info">
+        <h3>Total de Compras</h3>
+        <p class="stat-value">{{ totalCompras }}</p>
+      </div>
+    </div>
+
+    <div class="stat-card media">
+      <div class="stat-icon">📊</div>
+      <div class="stat-info">
+        <h3>Média por Compra</h3>
+        <p class="stat-value">{{ formatarValor(mediaGasto) }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Gráficos e Tabelas -->
+  <div class="charts-grid">
+    <!-- Gastos por Loja -->
+    <div class="chart-card">
+      <h3 class="chart-titulo">💳 Gastos por Loja</h3>
+      <div class="chart-content">
+        @if (gastosPorLoja.length > 0) {
+          @for (loja of gastosPorLoja; track loja.loja) {
+            <div class="bar-item">
+              <div class="bar-info">
+                <span class="bar-label">{{ loja.loja }}</span>
+                <span class="bar-value">{{ formatarValor(loja.total) }}</span>
+              </div>
+              <div class="bar-container">
+                <div 
+                  class="bar-fill" 
+                  [style.width.%]="(loja.total / gastosPorLoja[0].total) * 100">
+                </div>
+              </div>
+              <span class="bar-compras">{{ loja.compras }} compra(s)</span>
+            </div>
+          }
+        } @else {
+          <p class="empty-chart">Nenhum dado disponível</p>
+        }
+      </div>
+    </div>
+
+    <!-- Itens Mais Comprados -->
+    <div class="chart-card">
+      <h3 class="chart-titulo">🔥 Itens Mais Comprados</h3>
+      <div class="chart-content">
+        @if (itensMaisComprados.length > 0) {
+          @for (item of itensMaisComprados; track item.item; let i = $index) {
+            <div class="rank-item">
+              <span class="rank-numero">{{ i + 1 }}º</span>
+              <div class="rank-info">
+                <span class="rank-nome">{{ item.item }}</span>
+                <span class="rank-detalhes">
+                  Qtd: {{ item.quantidade }} | {{ formatarValor(item.gasto) }}
+                </span>
+              </div>
+            </div>
+          }
+        } @else {
+          <p class="empty-chart">Nenhum dado disponível</p>
+        }
+      </div>
+    </div>
+  </div>
+
+  <!-- Histórico de Compras -->
+  <div class="historico-section">
+    <h2 class="historico-titulo">📜 Histórico de Compras</h2>
+    
+    @if (listasFiltradas.length > 0) {
+      <div class="historico-grid">
+        @for (lista of listasFiltradas; track lista.id) {
+          <div class="historico-card">
+            <div class="historico-header">
+              <h4 class="historico-loja">{{ lista.lojaFornecedor }}</h4>
+              <button class="btn-editar-historico" (click)="editarLista(lista.id)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                  <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                </svg>
+              </button>
+            </div>
+            
+            <div class="historico-info">
+              <div class="info-row">
+                <span class="info-label">Data:</span>
+                <span class="info-value">{{ formatarData(lista.dataFinalizacao || lista.dataCompra) }}</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">Itens:</span>
+                <span class="info-value">{{ lista.itens.length }}</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">Supermercados:</span>
+                <span class="info-value">{{ lista.supermercados.join(', ') || 'N/A' }}</span>
+              </div>
+            </div>
+            
+            <div class="historico-total">
+              {{ formatarValor(lista.valorTotal) }}
+            </div>
+          </div>
+        }
+      </div>
+    } @else {
+      <div class="empty-historico">
+        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="8" x2="12" y2="12"></line>
+          <line x1="12" y1="16" x2="12.01" y2="16"></line>
+        </svg>
+        <h3>Nenhuma compra encontrada</h3>
+        <p>Não há compras finalizadas para o filtro selecionado</p>
+      </div>
+    }
+  </div>
+</div>

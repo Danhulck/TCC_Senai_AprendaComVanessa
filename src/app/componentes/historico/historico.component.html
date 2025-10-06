@@ -1,0 +1,66 @@
+<div class="historico-container">
+  <div class="historico-header">
+    <button class="btn-voltar" (click)="voltar()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M19 12H5M12 19l-7-7 7-7"></path>
+      </svg>
+      Voltar
+    </button>
+    <h1>
+      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="10"></circle>
+        <polyline points="12 6 12 12 16 14"></polyline>
+      </svg>
+      Histórico de Receitas
+    </h1>
+    <p>Receitas que você já visualizou</p>
+  </div>
+
+  <div class="historico-content">
+    <!-- Ações do Histórico -->
+    <div *ngIf="historicoReceitas.length > 0" class="historico-actions">
+      <button class="btn-limpar" (click)="limparHistorico()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="3 6 5 6 21 6"></polyline>
+          <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+        </svg>
+        Limpar Histórico
+      </button>
+    </div>
+
+    <!-- Lista do Histórico -->
+    <div *ngIf="historicoReceitas.length > 0" class="historico-lista">
+      <div *ngFor="let item of historicoReceitas" class="historico-item" (click)="onReceitaClick(item.receita)">
+        <div class="receita-info">
+          <img [src]="item.receita.image" [alt]="item.receita.name" class="receita-thumb">
+          <div class="receita-detalhes">
+            <h3>{{ item.receita.name }}</h3>
+            <p class="receita-categoria">{{ item.receita.flavor }}</p>
+            <div class="receita-stats">
+              <span class="data-acesso">{{ formatarData(item.dataAcesso) }}</span>
+              <span class="vezes-acessada" *ngIf="item.vezesAcessada > 1">
+                • {{ item.vezesAcessada }}x visualizada
+              </span>
+            </div>
+          </div>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Estado vazio -->
+    <div *ngIf="historicoReceitas.length === 0" class="empty-state">
+      <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <circle cx="12" cy="12" r="10"></circle>
+        <polyline points="12 6 12 12 16 14"></polyline>
+      </svg>
+      <h2>Nenhuma receita no histórico</h2>
+      <p>Quando você visualizar receitas, elas aparecerão aqui para acesso rápido</p>
+      <button class="btn-explorar" (click)="voltar()">
+        Explorar Receitas
+      </button>
+    </div>
+  </div>
+</div>

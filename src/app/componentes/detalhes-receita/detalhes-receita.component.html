@@ -1,0 +1,32 @@
+<div class="detalhes-container" [ngClass]="receita.categoria.id" *ngIf="receita">
+  <button class="voltar-btn" (click)="voltar()">
+    ← Voltar para a lista
+  </button>
+  
+  <div class="receita-header">
+    <h1 class="receita-titulo">{{ receita.name }}</h1>
+    <span class="receita-categoria" [ngClass]="receita.categoria.id">
+      {{ receita.categoria.value }}
+    </span>
+  </div>
+
+  <div class="receita-conteudo">
+    <div class="receita-imagem">
+      <img [src]="receita.image" [alt]="receita.name" class="imagem-receita">
+    </div>
+    
+    <div class="receita-detalhes">
+      <div class="ingredientes">
+        <h2>Ingredientes</h2>
+        <ul>
+          <li *ngFor="let ingrediente of receita.ingredients">{{ ingrediente }}</li>
+        </ul>
+      </div>
+      
+      <div class="modo-preparo">
+        <h2>Modo de Preparo</h2>
+        <p>{{ receita.instructions }}</p>
+      </div>
+    </div>
+  </div>
+</div>

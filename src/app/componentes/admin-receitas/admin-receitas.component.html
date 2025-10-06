@@ -1,0 +1,168 @@
+<div class="admin-container">
+  <div class="admin-header">
+    <h1>Administração de Receitas</h1>
+    <p>Gerencie todas as receitas do sistema</p>
+  </div>
+
+  <!-- Formulário de Adicionar/Editar -->
+  <div class="form-container">
+    <h2>{{ modoEdicao ? 'Editar Receita' : 'Adicionar Nova Receita' }}</h2>
+    
+    <form (ngSubmit)="salvarReceita()">
+      <div class="form-group">
+        <label for="nome">Nome do Prato</label>
+        <input 
+          type="text" 
+          id="nome" 
+          [(ngModel)]="novaReceita.name" 
+          name="nome" 
+          placeholder="Ex: Bolo de Chocolate"
+          required>
+      </div>
+
+      <div class="form-group">
+        <label for="tipo">Tipo do Prato</label>
+        <select 
+          id="tipo" 
+          [(ngModel)]="novaReceita.flavor" 
+          name="tipo" 
+          (change)="atualizarCategoria()"
+          required>
+          <option value="Doce">Doce</option>
+          <option value="Salgado">Salgado</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="imagem">URL da Imagem</label>
+        <input 
+          type="text" 
+          id="imagem" 
+          [(ngModel)]="novaReceita.image" 
+          name="imagem" 
+          placeholder="Ex: assets/img/bolo.png"
+          required>
+      </div>
+
+      <div class="form-group">
+        <label>Ingredientes</label>
+        <div class="ingredientes-input">
+          <input 
+            type="text" 
+            [(ngModel)]="ingredienteAtual" 
+            name="ingredienteAtual" 
+            placeholder="Digite um ingrediente"
+            (keyup.enter)="adicionarIngrediente(); $event.preventDefault()">
+          <button type="button" class="btn-add-ingrediente" (click)="adicionarIngrediente()">
+            Adicionar
+          </button>
+        </div>
+        <ul class="ingredientes-lista" *ngIf="novaReceita.ingredients.length > 0">
+          <li *ngFor="let ing of novaReceita.ingredients; let i = index">
+            {{ ing }}
+            <button type="button" class="btn-remover" (click)="removerIngrediente(i)">×</button>
+          </li>
+        </ul>
+      </div>
+
+      <div class="form-group">
+        <label for="instrucoes">Modo de Preparo</label>
+        <textarea 
+          id="instrucoes" 
+          [(ngModel)]="novaReceita.instructions" 
+          name="instrucoes" 
+          rows="6"
+          placeholder="Descreva o modo de preparo..."
+          required></textarea>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn-salvar">
+          {{ modoEdicao ? 'Atualizar Receita' : 'Adicionar Receita' }}
+        </button>
+        <button type="button" class="btn-cancelar" (click)="limparFormulario()" *ngIf="modoEdicao">
+          Cancelar
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Filtros -->
+  <div class="filtros-container">
+    <h2>Receitas Cadastradas</h2>
+    <div class="filtros">
+      <button class="btn-filtro" (click)="filtrarPorTipo('todos')">Todas</button>
+      <button class="btn-filtro doce" (click)="filtrarPorTipo('Doce')">Doces</button>
+      <button class="btn-filtro salgado" (click)="filtrarPorTipo('Salgado')">Salgados</button>
+    </div>
+  </div>
+
+  <!-- Lista de Receitas com Expansion Panels -->
+  <div class="receitas-lista">
+    <div 
+      *ngFor="let receita of receitasFiltradas" 
+      class="receita-card"
+      [class.doce]="receita.flavor === 'Doce'"
+      [class.salgado]="receita.flavor === 'Salgado'">
+      
+      <div class="receita-header" (click)="toggleExpansion(receita.id)">
+        <div class="receita-info">
+          <h3>{{ receita.name }}</h3>
+          <span class="receita-tipo" [class.doce]="receita.flavor === 'Doce'" [class.salgado]="receita.flavor === 'Salgado'">
+            {{ receita.flavor }}
+          </span>
+        </div>
+        <div class="receita-actions">
+          <button class="btn-icon btn-editar" (click)="editarReceita(receita); $event.stopPropagation()" title="Editar">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+              <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+            </svg>
+          </button>
+          <button class="btn-icon btn-excluir" (click)="excluirReceita(receita.id); $event.stopPropagation()" title="Excluir">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="3 6 5 6 21 6"></polyline>
+              <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+            </svg>
+          </button>
+          <svg 
+            class="expand-icon" 
+            [class.expanded]="isExpanded(receita.id)"
+            xmlns="http://www.w3.org/2000/svg" 
+            width="20" 
+            height="20" 
+            viewBox="0 0 24 24" 
+            fill="none" 
+            stroke="currentColor" 
+            stroke-width="2">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </div>
+      </div>
+
+      <div class="receita-content" [class.expanded]="isExpanded(receita.id)">
+        <div class="receita-detalhes">
+          <div class="receita-imagem" *ngIf="receita.image">
+            <img [src]="receita.image" [alt]="receita.name">
+          </div>
+          
+          <div class="receita-ingredientes">
+            <h4>Ingredientes:</h4>
+            <ul>
+              <li *ngFor="let ing of receita.ingredients">{{ ing }}</li>
+            </ul>
+          </div>
+
+          <div class="receita-preparo">
+            <h4>Modo de Preparo:</h4>
+            <p>{{ receita.instructions }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="empty-state" *ngIf="receitasFiltradas.length === 0">
+      <p>Nenhuma receita encontrada</p>
+    </div>
+  </div>
+</div>

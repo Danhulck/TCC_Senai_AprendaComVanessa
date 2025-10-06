@@ -1,0 +1,40 @@
+<div class="favoritos-container">
+  <div class="favoritos-header">
+    <button class="btn-voltar" (click)="voltar()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M19 12H5M12 19l-7-7 7-7"></path>
+      </svg>
+      Voltar
+    </button>
+    <h1>
+      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+      </svg>
+      Minhas Receitas Favoritas
+    </h1>
+    <p>Suas receitas salvas para acesso rápido</p>
+  </div>
+
+  <div class="favoritos-content">
+    <!-- Lista de Favoritos -->
+    <div *ngIf="receitasFavoritas.length > 0" class="receitas-grid">
+      <app-receita-card 
+        *ngFor="let receita of receitasFavoritas" 
+        [receita]="receita"
+        (click)="onReceitaClick(receita)">
+      </app-receita-card>
+    </div>
+
+    <!-- Estado vazio -->
+    <div *ngIf="receitasFavoritas.length === 0" class="empty-state">
+      <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+      </svg>
+      <h2>Nenhuma receita favorita ainda</h2>
+      <p>Explore as receitas e adicione suas favoritas clicando no ❤️</p>
+      <button class="btn-explorar" (click)="voltar()">
+        Explorar Receitas
+      </button>
+    </div>
+  </div>
+</div>

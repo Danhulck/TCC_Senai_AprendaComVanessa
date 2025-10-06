@@ -1,0 +1,47 @@
+.lista-receitas {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - var(--header-h));
+  }
+  
+  .titulo-principal {
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 8px;
+    color: var(--color-primaria);
+  }
+  
+  .linha-destaque {
+    display: block;
+    width: 80px;
+    height: 4px;
+    background-color: var(--color-secundaria);
+    margin: 0 auto 24px;
+    border-radius: 2px;
+  }
+
+/* Seções agora ocupam a viewport (min-height calculado na própria seção) */
+/* Divisão igual dentro da página de lista: todas as seções compartilham igualmente a altura disponível */
+.lista-receitas .categoria-section {
+  flex: 1 1 0;
+  min-height: auto; /* neutraliza o min-height global de 100vh para caber na divisão */
+  width: 100%;
+  left: 0;
+  right: 0;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+@media (max-width: 768px) {
+  /* Em telas pequenas pode ser preferível manter seções empilhadas com rolagem; comente o flex se quiser */
+  .lista-receitas {
+    min-height: auto;
+    display: block;
+  }
+}
+  

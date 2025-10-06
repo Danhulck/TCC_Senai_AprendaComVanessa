@@ -1,0 +1,243 @@
+.listas-container {
+  min-height: 100vh;
+  padding: 100px 2rem 3rem;
+  background: linear-gradient(135deg, #ffeee1 0%, #FFE0ED 50%, #ffeee1 100%);
+}
+
+/* Header Section */
+.header-section {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.titulo {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  color: #FF70AA;
+}
+
+.subtitulo {
+  font-size: 1.2rem;
+  color: #4a5568;
+  margin: 0 0 1.5rem 0;
+}
+
+.header-acoes {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-criar,
+.btn-dashboard,
+.btn-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-criar {
+  background: linear-gradient(135deg, #FF70AA 0%, #FF8865 100%);
+  box-shadow: 0 4px 12px rgba(255, 112, 170, 0.3);
+}
+
+.btn-criar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 112, 170, 0.4);
+}
+
+.btn-dashboard {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.btn-dashboard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+}
+
+.btn-toggle {
+  background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+  box-shadow: 0 4px 12px rgba(72, 187, 120, 0.3);
+}
+
+.btn-toggle:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(72, 187, 120, 0.4);
+}
+
+/* Grid de Listas */
+.listas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Card da Lista */
+.lista-card {
+  background: white;
+  border-radius: 20px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.lista-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.lista-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #ffeee1;
+}
+
+.lista-loja {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin: 0;
+}
+
+.lista-acoes {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn-icon {
+  background: #ffeee1;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-icon:hover {
+  background: #FF70AA;
+  color: white;
+}
+
+.btn-icon:hover svg {
+  stroke: white;
+}
+
+.btn-delete:hover {
+  background: #f56565;
+}
+
+/* Info da Lista */
+.lista-info {
+  margin-bottom: 1rem;
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.info-label {
+  font-weight: 600;
+  color: #718096;
+}
+
+.info-value {
+  color: #2d3748;
+  font-weight: 500;
+}
+
+/* Total */
+.lista-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: linear-gradient(135deg, #ffeee1 0%, #FFE0ED 100%);
+  border-radius: 12px;
+  margin-top: 1rem;
+}
+
+.total-label {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #2d3748;
+}
+
+.total-value {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #FF70AA;
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  max-width: 600px;
+  margin: 3rem auto;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.empty-state svg {
+  color: #cbd5e0;
+  margin-bottom: 1.5rem;
+}
+
+.empty-state h2 {
+  font-size: 1.75rem;
+  color: #2d3748;
+  margin-bottom: 0.5rem;
+}
+
+.empty-state p {
+  font-size: 1.1rem;
+  color: #718096;
+  margin: 0;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .listas-container {
+    padding: 90px 1rem 2rem;
+  }
+
+  .titulo {
+    font-size: 2rem;
+  }
+
+  .listas-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
