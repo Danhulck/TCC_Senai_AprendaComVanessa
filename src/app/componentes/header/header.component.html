@@ -75,10 +75,7 @@
     <!-- Home -->
     <li class="nav-item">
       <a routerLink="/" class="nav-link" (click)="closeSidenav()">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-          <polyline points="9 22 9 12 15 12 15 22"></polyline>
-        </svg>
+        <img src="assets/logos/house.png" alt="Início" class="nav-icon" width="20" height="20" />
         Início
       </a>
     </li>
@@ -87,9 +84,7 @@
     <li class="nav-item">
       <button class="nav-link expandable" (click)="toggleReceitas()">
         <div class="nav-link-content">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-          </svg>
+          <img src="assets/logos/receitas.png" alt="Receitas" class="nav-icon" width="20" height="20" />
           Receitas
         </div>
         <svg 
@@ -110,19 +105,13 @@
       <ul class="submenu" [class.expanded]="isReceitasExpanded">
         <li class="submenu-item">
           <a routerLink="/receitas/doce" class="submenu-link" (click)="closeSidenav()">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="12" r="10"></circle>
-              <path d="M12 6v6l4 2"></path>
-            </svg>
+            <img src="assets/logos/doce.png" alt="Doces" class="nav-icon" width="18" height="18" />
             Doces
           </a>
         </li>
         <li class="submenu-item">
           <a routerLink="/receitas/salgado" class="submenu-link" (click)="closeSidenav()">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="12" r="10"></circle>
-              <path d="M12 6v6l4 2"></path>
-            </svg>
+            <img src="assets/logos/salgado.png" alt="Salgados" class="nav-icon" width="18" height="18" />
             Salgados
           </a>
         </li>
@@ -132,11 +121,7 @@
     <!-- Timer -->
     <li class="nav-item">
       <a routerLink="/timer" class="nav-link" (click)="closeSidenav()">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="12" cy="13" r="8"></circle>
-          <path d="M12 9v4l2 2"></path>
-          <path d="M16.51 17.35l-.35 3.83a2 2 0 0 1-2 1.82H9.83a2 2 0 0 1-2-1.82l-.35-3.83m.01-10.7l.35-3.83A2 2 0 0 1 9.83 1h4.35a2 2 0 0 1 2 1.82l.35 3.83"></path>
-        </svg>
+        <img src="assets/logos/temporizador.png" alt="Timer de Cozinha" class="nav-icon" width="20" height="20" />
         Timer de Cozinha
       </a>
     </li>
