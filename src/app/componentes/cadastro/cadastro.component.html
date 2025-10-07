@@ -63,7 +63,7 @@
             required>
           <span>
             Li e aceito os 
-            <a href="/termos" target="_blank" rel="noopener noreferrer">Termos e Condições</a>.
+            <button type="button" class="btn-termos-link" (click)="abrirTermos()">Termos e Condições</button>.
           </span>
         </label>
       </div>
@@ -76,7 +76,7 @@
         {{ mensagemSucesso }}
       </div>
 
-      <button type="submit" class="btn-cadastrar">
+      <button type="submit" class="btn-cadastrar" [disabled]="!aceitarTermos" [attr.aria-disabled]="!aceitarTermos" [title]="!aceitarTermos ? 'Marque os Termos e Condições para continuar' : null">
         Cadastrar
       </button>
 
@@ -87,5 +87,30 @@
         </button>
       </div>
     </form>
+  </div>
+</div>
+
+<!-- Modal de Termos e Condições (LGPD) -->
+<div class="termos-overlay" *ngIf="exibirTermos" (click)="fecharTermos()"></div>
+<div class="termos-modal" *ngIf="exibirTermos" role="dialog" aria-modal="true" aria-labelledby="titulo-termos">
+  <div class="termos-header">
+    <h2 id="titulo-termos">Termos e Condições de Uso</h2>
+    <button type="button" class="termos-fechar" (click)="fecharTermos()" aria-label="Fechar">✕</button>
+  </div>
+  <div class="termos-conteudo">
+    <p><strong>1. Controlador dos dados:</strong> Este aplicativo é o controlador dos dados pessoais fornecidos por você.</p>
+    <p><strong>2. Dados coletados:</strong> Nome, e-mail e senha informados no cadastro. A senha é armazenada de forma segura.</p>
+    <p><strong>3. Finalidade do tratamento:</strong> Criar e gerenciar sua conta, permitir autenticação e oferecer funcionalidades do aplicativo.</p>
+    <p><strong>4. Base legal:</strong> Consentimento do titular e execução de contrato, conforme a Lei nº 13.709/2018 (LGPD).</p>
+    <p><strong>5. Compartilhamento:</strong> Não compartilhamos seus dados com terceiros sem sua autorização, salvo por obrigação legal.</p>
+    <p><strong>6. Direitos do titular:</strong> Você pode solicitar confirmação, acesso, correção, anonimização, revogação do consentimento e eliminação dos dados, quando aplicável.</p>
+    <p><strong>7. Segurança:</strong> Adotamos medidas técnicas e administrativas para proteger seus dados contra acessos não autorizados.</p>
+    <p><strong>8. Retenção:</strong> Os dados são mantidos pelo tempo necessário para as finalidades informadas ou por exigência legal.</p>
+    <p><strong>9. Contato:</strong> Para exercer seus direitos, entre em contato pelo canal informado na página de suporte.</p>
+    <p>Ao marcar a opção "Li e aceito", você declara ter lido e concordado com estes Termos e Condições.</p>
+  </div>
+  <div class="termos-acoes">
+    <button type="button" class="btn-secundario" (click)="fecharTermos()">Fechar</button>
+    <button type="button" class="btn-primario" (click)="aceitarEFecharTermos()">Li e aceito</button>
   </div>
 </div>

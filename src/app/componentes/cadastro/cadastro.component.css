@@ -103,6 +103,14 @@
   box-shadow: 0 6px 16px rgba(255, 112, 170, 0.4);
 }
 
+.btn-cadastrar[disabled],
+.btn-cadastrar[aria-disabled="true"] {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
 .cadastro-footer {
   text-align: center;
   padding-top: 1rem;
@@ -128,6 +136,98 @@
 .btn-login:hover {
   background: #FF70AA;
   color: white;
+}
+
+/* Link para Termos */
+.btn-termos-link {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #FF70AA;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.btn-termos-link:hover {
+  color: #FF8865;
+}
+
+/* Modal de Termos (LGPD) */
+.termos-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 1100;
+}
+
+.termos-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 720px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  z-index: 1101;
+  display: flex;
+  flex-direction: column;
+  max-height: 80vh;
+}
+
+.termos-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid #eee;
+}
+
+.termos-fechar {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+.termos-conteudo {
+  padding: 1rem 1.25rem;
+  overflow: auto;
+}
+
+.termos-conteudo p {
+  margin-bottom: 0.75rem;
+  color: #4a5568;
+}
+
+.termos-acoes {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  border-top: 1px solid #eee;
+}
+
+.btn-primario {
+  padding: 0.5rem 1rem;
+  background: linear-gradient(135deg, #FF70AA 0%, #FF8865 100%);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn-secundario {
+  padding: 0.5rem 1rem;
+  background: #f7fafc;
+  color: #2d3748;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
 }
 
 @media (max-width: 768px) {

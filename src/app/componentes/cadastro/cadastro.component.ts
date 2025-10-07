@@ -19,6 +19,7 @@ export class CadastroComponent {
   aceitarTermos: boolean = false;
   mensagemErro: string = '';
   mensagemSucesso: string = '';
+  exibirTermos: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -65,5 +66,18 @@ export class CadastroComponent {
 
   voltarParaLogin() {
     this.router.navigate(['/login']);
+  }
+
+  abrirTermos() {
+    this.exibirTermos = true;
+  }
+
+  fecharTermos() {
+    this.exibirTermos = false;
+  }
+
+  aceitarEFecharTermos() {
+    this.aceitarTermos = true;
+    this.exibirTermos = false;
   }
 }

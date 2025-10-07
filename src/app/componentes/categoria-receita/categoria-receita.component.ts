@@ -1,4 +1,4 @@
-import { Component, input, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, input, ViewChild, ElementRef, AfterViewInit, HostListener } from '@angular/core';
 import { CategoriaReceita } from '../receita-card/receita';
 import { ReceitaCardComponent } from '../receita-card/receita-card.component';
 import { CommonModule } from '@angular/common';
@@ -25,6 +25,12 @@ export class CategoriaReceitaComponent implements AfterViewInit {
     }, 100);
   }
 
+  @HostListener('window:resize')
+  onResize() {
+    // Recalcula estado dos botões quando a viewport mudar
+    this.updateScrollButtons();
+  }
+
   updateScrollButtons() {
     const element = this.carousel.nativeElement;
     this.canScrollLeft = element.scrollLeft > 0;
@@ -32,10 +38,18 @@ export class CategoriaReceitaComponent implements AfterViewInit {
   }
 
   scrollLeft() {
-    this.carousel.nativeElement.scrollBy({ left: -300, behavior: 'smooth' });
+    const amount = this.getScrollAmount();
+    this.carousel.nativeElement.scrollBy({ left: -amount, behavior: 'smooth' });
   }
 
   scrollRight() {
-    this.carousel.nativeElement.scrollBy({ left: 300, behavior: 'smooth' });
+    const amount = this.getScrollAmount();
+    this.carousel.nativeElement.scrollBy({ left: amount, behavior: 'smooth' });
+  }
+
+  private getScrollAmount(): number {
+    const width = this.carousel?.nativeElement?.clientWidth || 0;
+    // Avança ~90% da largura visível, com um mínimo para telas pequenas
+    return Math.max(220, Math.floor(width * 0.9));
   }
 }
