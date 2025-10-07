@@ -32,14 +32,31 @@ export class CadastroComponent {
       this.mensagemErro = 'Por favor, preencha todos os campos!';
       return;
     }
+    // Máximo 25 caracteres para nome
+    if (this.nome.length > 25) {
+      this.mensagemErro = 'O nome deve ter no máximo 25 caracteres.';
+      return;
+    }
+
+    // Validação de e-mail (formato)
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(this.email)) {
+      this.mensagemErro = 'Informe um e-mail válido.';
+      return;
+    }
 
     if (this.senha !== this.confirmarSenha) {
       this.mensagemErro = 'As senhas não coincidem!';
       return;
     }
 
-    if (this.senha.length < 6) {
-      this.mensagemErro = 'A senha deve ter no mínimo 6 caracteres!';
+    // Mínimo 8 e máximo 25 caracteres para senha
+    if (this.senha.length < 8) {
+      this.mensagemErro = 'A senha deve ter no mínimo 8 caracteres!';
+      return;
+    }
+    if (this.senha.length > 25) {
+      this.mensagemErro = 'A senha deve ter no máximo 25 caracteres!';
       return;
     }
 

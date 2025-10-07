@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+/* Tipografia: Inter (texto) e Playfair Display (títulos) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
 
 /* Reset de margens e paddings para garantir que o conteúdo encoste nas bordas */
 * {
@@ -11,6 +13,8 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  color: #1f2937; /* slate-800 */
 }
 
 html {
@@ -31,8 +35,26 @@ img, picture, video, canvas, svg {
 
 /* Tipografia responsiva segura */
 body {
-  line-height: 1.5;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Títulos mais agradáveis e legíveis */
+h1, h2, h3 {
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+  color: #111827; /* gray-900 */
+  line-height: 1.25;
+}
+
+h1 { font-weight: 700; letter-spacing: -0.02em; }
+h2 { font-weight: 700; letter-spacing: -0.01em; }
+h3 { font-weight: 600; letter-spacing: -0.005em; }
+
+/* Subtítulos e realces */
+h4, h5, h6, .subtitle, .subtitulo {
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  font-weight: 600;
 }
 
 /* Contêiner utilitário opcional */
