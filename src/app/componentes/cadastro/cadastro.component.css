@@ -1,9 +1,9 @@
 .cadastro-container {
-  min-height: 100vh;
+  min-height: calc(100vh - var(--header-h));
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
+  padding: var(--header-h) 2rem 2rem;
   background: linear-gradient(135deg, #ffeee1 0%, #FFE0ED 50%, #ffeee1 100%);
 }
 
@@ -19,6 +19,13 @@
 .cadastro-header {
   text-align: center;
   margin-bottom: 2rem;
+}
+
+.logo-auth {
+  display: block;
+  width: clamp(160px, 35vw, 260px);
+  height: auto;
+  margin: 0 auto 12px;
 }
 
 .cadastro-titulo {

@@ -1,6 +1,6 @@
 /* Seção completa da categoria com background - sem margens laterais */
 .categoria-section {
-  padding: 3rem 0;
+  padding: var(--header-h) 0 3rem 0;
   margin: 0;
   width: 100vw;
   position: relative;
@@ -430,7 +430,7 @@
     right: 0;
     margin-left: 0;
     margin-right: 0;
-    padding: 2rem 0;
+    padding: var(--header-h) 0 2rem 0;
   }
 
   .categoria-header {
