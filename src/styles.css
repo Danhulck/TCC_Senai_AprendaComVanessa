@@ -26,6 +26,13 @@ html {
 @media (max-width: 768px) { :root { --header-h: 68px; } }
 @media (max-width: 480px) { :root { --header-h: 64px; } }
 
+/* Cores de marca (para reuso em header/footer) */
+:root {
+  --brand-grad-start: #FF70AA;
+  --brand-grad-end: #FF8865;
+  --brand-on-grad: #ffffff;
+}
+
 /* Mídia fluida padrão */
 img, picture, video, canvas, svg {
   max-width: 100%;

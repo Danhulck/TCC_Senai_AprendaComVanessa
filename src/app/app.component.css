@@ -1,10 +1,14 @@
 :host {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  min-height: 100svh;
   width: 100%;
   margin: 0;
   padding: 0;
 }
 
-router-outlet {
-  display: none;
+.main-content {
+  flex: 1 0 auto;
+  display: block;
 }

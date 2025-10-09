@@ -1,9 +1,11 @@
 .cadastro-container {
-  min-height: calc(100vh - var(--header-h));
+  /* Cobertura completa da viewport, independente de zoom */
+  min-height: 100dvh;
+  min-height: 100svh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--header-h) 2rem 2rem;
+  padding: calc(var(--header-h) + 12px) 2rem 2rem;
   background: linear-gradient(135deg, #ffeee1 0%, #FFE0ED 50%, #ffeee1 100%);
 }
 
@@ -244,5 +246,44 @@
 
   .cadastro-titulo {
     font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .cadastro-container {
+    padding: calc(var(--header-h) + 8px) 1rem 1rem;
+  }
+
+  .cadastro-card {
+    padding: 1.25rem;
+    border-radius: 20px;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.18);
+  }
+
+  .form-input {
+    padding: 0.85rem;
+    font-size: 0.95rem;
+  }
+
+  .btn-cadastrar {
+    padding: 0.85rem 1.25rem;
+    font-size: 1rem;
+    border-radius: 12px;
+  }
+
+  .btn-login {
+    padding: 0.6rem 1rem;
+    border-radius: 10px;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .logo-auth {
+    width: clamp(140px, 45vw, 180px);
+  }
+
+  .cadastro-card {
+    padding: 1rem;
   }
 }

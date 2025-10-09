@@ -8,6 +8,7 @@ import { AdminReceitasComponent } from './componentes/admin-receitas/admin-recei
 import { PerfilComponent } from './componentes/perfil/perfil.component';
 import { FavoritosComponent } from './componentes/favoritos/favoritos.component';
 import { HistoricoComponent } from './componentes/historico/historico.component';
+import { SobreComponent } from './componentes/sobre/sobre.component';
 
 export const routes: Routes = [
   { path: '', component: ListaReceitasComponent },
@@ -18,6 +19,7 @@ export const routes: Routes = [
   { path: 'perfil', component: PerfilComponent },
   { path: 'favoritos', component: FavoritosComponent },
   { path: 'historico', component: HistoricoComponent },
+  { path: 'sobre', component: SobreComponent },
   { path: 'admin/receitas', component: AdminReceitasComponent },
   { path: '**', redirectTo: '' }
 ];
